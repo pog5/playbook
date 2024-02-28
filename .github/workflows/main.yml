@@ -49,21 +49,9 @@ jobs:
       #   run: |
       #     url=$(bash <(curl -s https://devuploads.com/upload.sh) -f "${{ env.FILENAME }}" -k "${{ secrets.DEVUPLOADS_API_KEY }}" | grep -o 'https://devuploads.com[^"]*')
       #     echo "DEVUPLOADS=$url" >> $GITHUB_ENV
-
-      - name: Release
-        uses: svenstaro/upload-release-action@v2
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v3
         with:
-          repo_token: ${{ secrets.TOKEN }}
-          file: ${{ env.FILENAME }}
-          asset_name: ${{ env.FILENAME }}
-          tag: ${{ github.ref }}
-          overwrite: true
-          body: |
-            # Download Link ✨
-
-            If you would like to support Revision, kindly download the Playbook from the provided link below.
-
-            📌Link: 
-            
-            SHA256: `${{ env.HASH }}`
+          name: 'Revi-PB.apbx'
+          path: '*.apbx'
             
